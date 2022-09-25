@@ -14,7 +14,8 @@ export function isExternal(path) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
+export function validMbile(str) {
+  return /^[a-zA-Z0-9_-]{5,16}$/.test(
+    str
+  )
 }
