@@ -74,7 +74,7 @@
           type="primary"
           style="width: 100%; margin-bottom: 30px"
           @click="login"
-        >登录</el-button>
+        >登 录</el-button>
       </el-form>
     </div>
   </div>
@@ -155,8 +155,7 @@ export default {
           this.loginForm.password,
           this.loginForm.yanzhengma,
           this.random,
-          0
-        )
+          0)
         console.log(res)
         this.$router.push('/dashboard')
       } catch (error) {
