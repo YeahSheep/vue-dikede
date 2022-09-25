@@ -22,22 +22,10 @@ export const yanzhengApi = (num) => {
  * @param {*} account 账号(合作商登录需要，手机号)
  * @returns
  */
-export const userLoginApi = (
-  loginName,
-  password,
-  code,
-  clientToken,
-  loginType
-) => {
+export const userLoginApi = (data) => {
   return request({
     url: '/user-service/user/login',
     method: 'post',
-    data: {
-      loginName,
-      password,
-      code,
-      clientToken,
-      loginType
-    }
+    data
   })
 }

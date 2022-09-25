@@ -84,7 +84,7 @@
 // 引入自定义规则
 import { validMbile } from '@/utils/validate'
 // 引入api
-import { yanzhengApi, userLoginApi } from '@/api'
+import { yanzhengApi } from '@/api'
 
 export default {
   name: 'Login',
@@ -140,27 +140,23 @@ export default {
       try {
         this.random = Math.random()
         const res = await yanzhengApi(this.random)
-        console.log(res)
+        // console.log(res)
         const url = window.URL.createObjectURL(res.data)
         // 将图片转换成img标签可以识别的url
         this.imgData = url
       } catch (error) {
-        console.log(error)
+        throw new Error(error)
       }
     },
     async login() {
-      try {
-        const res = await userLoginApi(
-          this.loginForm.mobile,
-          this.loginForm.password,
-          this.loginForm.yanzhengma,
-          this.random,
-          0)
-        console.log(res)
-        this.$router.push('/dashboard')
-      } catch (error) {
-        console.log(error)
+      const userInfo = {
+        loginName: this.loginForm.mobile,
+        password: this.loginForm.password,
+        code: this.loginForm.yanzhengma,
+        clientToken: this.random,
+        loginType: 0
       }
+      await this.$store.dispatch('user/TOKEN_ACTION', userInfo)
     }
   }
 }
