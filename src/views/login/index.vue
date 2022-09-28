@@ -139,9 +139,9 @@ export default {
     async getYanZheng() {
       try {
         this.random = Math.random()
-        const res = await yanzhengApi(this.random)
-        // console.log(res)
-        const url = window.URL.createObjectURL(res.data)
+        const data = await yanzhengApi(this.random)
+        console.log(data)
+        const url = window.URL.createObjectURL(data)
         // 将图片转换成img标签可以识别的url
         this.imgData = url
       } catch (error) {
@@ -149,14 +149,20 @@ export default {
       }
     },
     async login() {
-      const userInfo = {
-        loginName: this.loginForm.mobile,
-        password: this.loginForm.password,
-        code: this.loginForm.yanzhengma,
-        clientToken: this.random,
-        loginType: 0
+      try {
+        const userInfo = {
+          loginName: this.loginForm.mobile,
+          password: this.loginForm.password,
+          code: this.loginForm.yanzhengma,
+          clientToken: this.random,
+          loginType: 0
+        }
+        this.loading = true
+        await this.$store.dispatch('user/TOKEN_ACTION', userInfo)
+        this.$router.push('/dashboard')
+      } finally {
+        this.loading = false
       }
-      await this.$store.dispatch('user/TOKEN_ACTION', userInfo)
     }
   }
 }

@@ -18,8 +18,8 @@ export default {
   actions: {
     async TOKEN_ACTION({ commit }, userInfo) {
       try {
-        const { data } = await userLoginApi(userInfo)
-        // console.log(data.token)
+        const data = await userLoginApi(userInfo)
+        console.log(data)
         commit('SET_TOKEN', data.token)
       } catch (error) {
         throw new Error(error)
