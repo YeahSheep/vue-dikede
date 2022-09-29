@@ -10,7 +10,7 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: deeppink;
+    background-color: #fff;
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -84,9 +84,12 @@
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
       background-color: $subMenuBg !important;
+     color: #999 !important;
 
       &:hover {
         background-color: $subMenuHover !important;
+     color: #409EFF !important;
+        
       }
     }
   }
@@ -202,6 +205,7 @@
     &:hover {
       // you can use $subMenuHover
       background-color: $menuHover !important;
+
     }
   }
 
